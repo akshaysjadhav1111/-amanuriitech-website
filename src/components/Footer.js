@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Linkedin, Twitter, Facebook, Instagram, Youtube, ChevronUp } from 'lucide-react';
 
-const Footer = () => {
+const Footer = ({ onNavigate }) => {
   const [hoveredLink, setHoveredLink] = useState(null);
 
   const scrollToTop = () => {
@@ -12,46 +12,43 @@ const Footer = () => {
     whatWeDo: {
       title: 'What we do',
       links: [
-        'Industries',
-        'Services',
-        'Insights'
+        { label: 'Web Development', action: () => onNavigate && onNavigate('projects', 'web') },
+        { label: 'App Development', action: () => onNavigate && onNavigate('projects', 'app') },
+        { label: 'AI & Machine Learning', action: () => onNavigate && onNavigate('projects', 'ai') },
       ]
     },
     whoWeAre: {
       title: 'Who we are',
       links: [
-        'About Company',
-        'Locations',
-        'Annual Report',
-        'Board of Directors',
-        'Awards and accolades'
+        { label: 'About Company', action: () => onNavigate && onNavigate('whoWeAre') },
+        { label: 'Our Process', action: () => onNavigate && onNavigate('ourProcess') },
+        { label: 'Our Impact', action: () => onNavigate && onNavigate('stats') },
       ]
     },
-    aiInnovation: {
-      title: 'AI and innovation',
+    services: {
+      title: 'Services',
       links: [
-        'AI Lab',
-        'Engineering AI for impact',
-        'New minds, new markets'
+        { label: 'Our Services', action: () => onNavigate && onNavigate('services') },
+        { label: 'Our Projects', action: () => onNavigate && onNavigate('projects') },
+        { label: 'Get Started', action: () => onNavigate && onNavigate('contact') },
       ]
     },
     resources: {
-      title: 'Resources',
+      title: 'Contact',
       links: [
-        'Contact Us',
-        'Careers',
-        'Information for Suppliers',
-        'Glossary'
+        { label: 'Contact Us', action: () => onNavigate && onNavigate('contact') },
+        { label: 'Free Consultation', action: () => onNavigate && onNavigate('contact') },
+        { label: 'Back to Home', action: () => onNavigate && onNavigate('hero') },
       ]
     }
   };
 
   const socialLinks = [
-    { icon: Linkedin, label: 'LinkedIn', url: '#' },
-    { icon: Twitter, label: 'Twitter', url: '#' },
-    { icon: Facebook, label: 'Facebook', url: '#' },
-    { icon: Instagram, label: 'Instagram', url: '#' },
-    { icon: Youtube, label: 'Youtube', url: '#' }
+    { icon: Linkedin, label: 'LinkedIn', url: 'https://linkedin.com' },
+    { icon: Twitter, label: 'Twitter', url: 'https://twitter.com' },
+    { icon: Facebook, label: 'Facebook', url: 'https://facebook.com' },
+    { icon: Instagram, label: 'Instagram', url: 'https://instagram.com' },
+    { icon: Youtube, label: 'Youtube', url: 'https://youtube.com' }
   ];
 
   return (
@@ -67,16 +64,16 @@ const Footer = () => {
               <ul className="space-y-2 sm:space-y-3">
                 {section.links.map((link, index) => (
                   <li key={index}>
-                    <a
-                      href="#"
+                    <button
+                      onClick={link.action}
                       onMouseEnter={() => setHoveredLink(`${key}-${index}`)}
                       onMouseLeave={() => setHoveredLink(null)}
-                      className={`text-sm sm:text-base text-gray-400 hover:text-white transition-all duration-300 inline-block ${
+                      className={`text-sm sm:text-base text-gray-400 hover:text-white transition-all duration-300 inline-block text-left ${
                         hoveredLink === `${key}-${index}` ? 'translate-x-2' : ''
                       }`}
                     >
-                      {link}
-                    </a>
+                      {link.label}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -95,6 +92,8 @@ const Footer = () => {
               <a
                 key={index}
                 href={social.url}
+                target="_blank"
+                rel="noreferrer"
                 aria-label={social.label}
                 className="group relative w-10 h-10 flex items-center justify-center rounded-full border-2 border-gray-700 hover:border-purple-500 transition-all duration-300 hover:scale-110"
               >
@@ -127,13 +126,13 @@ const Footer = () => {
         {/* Bottom Links and Copyright */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-500">
           <div className="flex flex-wrap justify-center sm:justify-start gap-4 sm:gap-6">
-            <a href="#" className="hover:text-white transition-colors duration-300">Sitemap</a>
-            <a href="#" className="hover:text-white transition-colors duration-300">Terms</a>
-            <a href="#" className="hover:text-white transition-colors duration-300">Privacy Notice</a>
-            <a href="#" className="hover:text-white transition-colors duration-300">Cookie Notice</a>
+            <button onClick={() => onNavigate && onNavigate('hero')} className="hover:text-white transition-colors duration-300">Home</button>
+            <button onClick={() => onNavigate && onNavigate('services')} className="hover:text-white transition-colors duration-300">Services</button>
+            <button onClick={() => onNavigate && onNavigate('whoWeAre')} className="hover:text-white transition-colors duration-300">About</button>
+            <button onClick={() => onNavigate && onNavigate('contact')} className="hover:text-white transition-colors duration-300">Contact</button>
           </div>
           <p className="text-center sm:text-right">
-            © 2025 Your Company, all rights reserved
+            © 2025 Amanuriitech Solutions, all rights reserved
           </p>
         </div>
       </div>

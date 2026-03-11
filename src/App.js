@@ -116,12 +116,12 @@ function App() {
             <ContactSection />
           </div>
 
-          <Footer />
+          <Footer onNavigate={handleNavigation} />
         </>
       ) : currentPage === 'ourProcess' ? (
         <>
           <OurProcessPage onNavigate={handleNavigation} />
-          <Footer />
+          <Footer onNavigate={handleNavigation} />
         </>
       ) : null}
     </div>
