@@ -104,36 +104,60 @@ const ContactSection = () => {
     <>
       <section
         id="contact-section"
-        className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-16 sm:py-20 md:py-24 relative overflow-hidden"
+        className="text-white py-8 sm:py-20 md:py-24 relative overflow-hidden"
+        style={{ background: '#000' }}
       >
-        {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        {/* Animated background — RED glow blobs replacing purple/orange */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute top-0 left-0 w-96 h-96 rounded-full blur-3xl animate-pulse"
+            style={{ background: 'radial-gradient(circle, rgba(230,48,48,0.15) 0%, transparent 70%)' }}
+          ></div>
+          <div
+            className="absolute bottom-0 right-0 w-96 h-96 rounded-full blur-3xl animate-pulse"
+            style={{ background: 'radial-gradient(circle, rgba(230,48,48,0.10) 0%, transparent 70%)', animationDelay: '1s' }}
+          ></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+
             {/* Title */}
             <div
               className={`transition-all duration-1000 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >
-              <div className="inline-block px-4 py-2 bg-purple-600/20 backdrop-blur-sm rounded-full mb-6">
-                <span className="text-purple-400 font-semibold text-sm sm:text-base">Get in Touch</span>
+              {/* Eyebrow — RED */}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded mb-6"
+                style={{ background: 'rgba(230,48,48,0.08)', border: '1px solid rgba(230,48,48,0.25)' }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ background: '#e63030' }} />
+                <span className="font-bold text-sm sm:text-base tracking-widest uppercase" style={{ color: '#e63030' }}>
+                  Get in Touch
+                </span>
               </div>
-              
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
-                Take the First Step
+
+              {/* Heading — Bebas Neue + RED accent */}
+              <h2
+                className="font-black leading-none mb-6 sm:mb-8"
+                style={{
+                  fontFamily: "'Bebas Neue', sans-serif",
+                  fontSize: 'clamp(2.2rem, 8vw, 6.5rem)',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                TAKE THE{' '}
+                <span style={{ color: '#e63030' }}>FIRST STEP</span>
               </h2>
-              
-              <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
+
+              <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 sm:mb-12 leading-relaxed max-w-3xl mx-auto">
                 Have a project in mind? Let's talk. We'll get back to you within 24 hours — no pressure, no commitment.
               </p>
             </div>
 
-            {/* CTA Button with Animation */}
+            {/* CTA Button — RED */}
             <div
               className={`transition-all duration-1000 delay-200 ${
                 isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
@@ -141,38 +165,43 @@ const ContactSection = () => {
             >
               <button
                 onClick={() => setShowForm(true)}
-                className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-orange-500 hover:from-purple-700 hover:to-orange-600 text-white px-8 sm:px-10 py-4 sm:py-5 rounded-lg text-base sm:text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl overflow-hidden"
+                className="contact-liquid-btn"
               >
-                {/* Animated shine effect */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></span>
-                
-                <span className="relative">Contact Us Today</span>
-                <ArrowRight className="relative group-hover:translate-x-2 transition-transform" size={20} />
+                <span className="contact-liquid-fill" />
+                <span className="contact-liquid-text flex items-center gap-3">
+                  Contact Us Today
+                  <ArrowRight size={20} />
+                </span>
               </button>
             </div>
 
-            {/* Decorative line */}
+            {/* Decorative line — RED gradient */}
             <div
               className={`mt-12 sm:mt-16 transition-all duration-1000 delay-400 ${
                 isVisible ? 'opacity-100 w-full' : 'opacity-0 w-0'
               }`}
             >
-              <div className="h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto"></div>
+              <div
+                className="h-px mx-auto"
+                style={{ background: 'linear-gradient(to right, transparent, rgba(230,48,48,0.5), transparent)' }}
+              ></div>
             </div>
           </div>
         </div>
 
-        {/* Floating particles effect */}
+        {/* Floating particles — RED dots */}
         <div className="absolute inset-0 pointer-events-none">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-purple-400 rounded-full animate-float"
+              className="absolute w-1 h-1 rounded-full animate-float"
               style={{
+                background: '#e63030',
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
                 animationDelay: `${Math.random() * 5}s`,
                 animationDuration: `${5 + Math.random() * 10}s`,
+                opacity: 0.4,
               }}
             ></div>
           ))}
@@ -181,12 +210,26 @@ const ContactSection = () => {
 
       {/* Contact Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-md animate-fadeIn">
-          <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-800 animate-slideUp custom-scrollbar">
-            {/* Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-orange-500 text-white p-4 sm:p-6 rounded-t-2xl flex justify-between items-center z-10">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-md animate-fadeIn"
+          style={{ background: 'rgba(0,0,0,0.97)' }}
+        >
+          <div
+            className="text-white rounded-2xl max-w-4xl w-full max-h-[95vh] overflow-y-auto shadow-2xl animate-slideUp custom-scrollbar mx-2 sm:mx-0"
+            style={{ background: '#080808', border: '1px solid #1a1a1a' }}
+          >
+            {/* Header — RED */}
+            <div
+              className="sticky top-0 text-white p-4 sm:p-6 rounded-t-2xl flex justify-between items-center z-10"
+              style={{ background: '#e63030' }}
+            >
               <div className="flex-1">
-                <h3 className="text-xl sm:text-2xl font-bold mb-1 animate-fadeInUp">Take the first step</h3>
+                <h3
+                  className="text-xl sm:text-2xl font-black mb-1 animate-fadeInUp"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif", letterSpacing: '0.04em' }}
+                >
+                  TAKE THE FIRST STEP
+                </h3>
                 <p className="text-xs sm:text-sm text-white/90 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
                   Fill in your details and we'll get back to you within 24 hours
                 </p>
@@ -194,7 +237,10 @@ const ContactSection = () => {
               <button
                 onClick={() => setShowForm(false)}
                 disabled={isSubmitting}
-                className="ml-4 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 hover:rotate-90 transition-all duration-300 disabled:opacity-50"
+                className="ml-4 w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 disabled:opacity-50"
+                style={{ background: 'rgba(0,0,0,0.2)' }}
+                onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.4)'}
+                onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,0,0,0.2)'}
               >
                 <X size={24} />
               </button>
@@ -202,12 +248,14 @@ const ContactSection = () => {
 
             {/* Form */}
             <div className="p-6 sm:p-8 space-y-6">
+
               {/* First Name & Last Name */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-                  <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-300">
-                    <User size={16} className="text-purple-400" />
-                    First Name <span className="text-orange-500">*</span>
+                  <label className="flex items-center gap-2 text-xs font-bold mb-2 uppercase tracking-widest"
+                    style={{ color: '#666' }}>
+                    <User size={13} style={{ color: '#e63030' }} />
+                    First Name <span style={{ color: '#e63030' }}>*</span>
                   </label>
                   <input
                     type="text"
@@ -216,14 +264,18 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500 hover:bg-gray-800/70 disabled:opacity-50"
                     placeholder="John"
+                    className="w-full px-4 py-3 text-white placeholder-gray-600 outline-none transition-all disabled:opacity-50"
+                    style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: '4px', fontSize: '0.95rem' }}
+                    onFocus={e => e.target.style.borderColor = '#e63030'}
+                    onBlur={e => e.target.style.borderColor = '#222'}
                   />
                 </div>
                 <div className="animate-fadeInUp" style={{ animationDelay: '0.25s' }}>
-                  <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-300">
-                    <User size={16} className="text-purple-400" />
-                    Last Name <span className="text-orange-500">*</span>
+                  <label className="flex items-center gap-2 text-xs font-bold mb-2 uppercase tracking-widest"
+                    style={{ color: '#666' }}>
+                    <User size={13} style={{ color: '#e63030' }} />
+                    Last Name <span style={{ color: '#e63030' }}>*</span>
                   </label>
                   <input
                     type="text"
@@ -232,8 +284,11 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500 hover:bg-gray-800/70 disabled:opacity-50"
                     placeholder="Doe"
+                    className="w-full px-4 py-3 text-white placeholder-gray-600 outline-none transition-all disabled:opacity-50"
+                    style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: '4px', fontSize: '0.95rem' }}
+                    onFocus={e => e.target.style.borderColor = '#e63030'}
+                    onBlur={e => e.target.style.borderColor = '#222'}
                   />
                 </div>
               </div>
@@ -241,9 +296,10 @@ const ContactSection = () => {
               {/* Email & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <div className="animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-                  <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-300">
-                    <Mail size={16} className="text-purple-400" />
-                    Email <span className="text-orange-500">*</span>
+                  <label className="flex items-center gap-2 text-xs font-bold mb-2 uppercase tracking-widest"
+                    style={{ color: '#666' }}>
+                    <Mail size={13} style={{ color: '#e63030' }} />
+                    Email <span style={{ color: '#e63030' }}>*</span>
                   </label>
                   <input
                     type="email"
@@ -252,13 +308,17 @@ const ContactSection = () => {
                     onChange={handleInputChange}
                     required
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500 hover:bg-gray-800/70 disabled:opacity-50"
                     placeholder="john@example.com"
+                    className="w-full px-4 py-3 text-white placeholder-gray-600 outline-none transition-all disabled:opacity-50"
+                    style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: '4px', fontSize: '0.95rem' }}
+                    onFocus={e => e.target.style.borderColor = '#e63030'}
+                    onBlur={e => e.target.style.borderColor = '#222'}
                   />
                 </div>
                 <div className="animate-fadeInUp" style={{ animationDelay: '0.35s' }}>
-                  <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-300">
-                    <Phone size={16} className="text-purple-400" />
+                  <label className="flex items-center gap-2 text-xs font-bold mb-2 uppercase tracking-widest"
+                    style={{ color: '#666' }}>
+                    <Phone size={13} style={{ color: '#e63030' }} />
                     Phone
                   </label>
                   <input
@@ -267,16 +327,20 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     disabled={isSubmitting}
-                    className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all text-white placeholder-gray-500 hover:bg-gray-800/70 disabled:opacity-50"
                     placeholder="+1 (555) 000-0000"
+                    className="w-full px-4 py-3 text-white placeholder-gray-600 outline-none transition-all disabled:opacity-50"
+                    style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: '4px', fontSize: '0.95rem' }}
+                    onFocus={e => e.target.style.borderColor = '#e63030'}
+                    onBlur={e => e.target.style.borderColor = '#222'}
                   />
                 </div>
               </div>
 
               {/* Message */}
               <div className="animate-fadeInUp" style={{ animationDelay: '0.6s' }}>
-                <label className="flex items-center gap-2 text-sm font-semibold mb-2 text-gray-300">
-                  <MessageSquare size={16} className="text-purple-400" />
+                <label className="flex items-center gap-2 text-xs font-bold mb-2 uppercase tracking-widest"
+                  style={{ color: '#666' }}>
+                  <MessageSquare size={13} style={{ color: '#e63030' }} />
                   Message
                 </label>
                 <textarea
@@ -285,21 +349,27 @@ const ContactSection = () => {
                   onChange={handleInputChange}
                   disabled={isSubmitting}
                   rows="4"
-                  className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none text-white placeholder-gray-500 hover:bg-gray-800/70 disabled:opacity-50"
                   placeholder="Tell us about your project and requirements..."
+                  className="w-full px-4 py-3 text-white placeholder-gray-600 outline-none transition-all resize-none disabled:opacity-50"
+                  style={{ background: '#0d0d0d', border: '1px solid #222', borderRadius: '4px', fontSize: '0.95rem' }}
+                  onFocus={e => e.target.style.borderColor = '#e63030'}
+                  onBlur={e => e.target.style.borderColor = '#222'}
                 ></textarea>
               </div>
 
-              {/* Submit Button */}
-              <div className="pt-6 animate-fadeInUp" style={{ animationDelay: '0.7s' }}>
+              {/* Submit Button — pill style */}
+              <div className="pt-2 animate-fadeInUp" style={{ animationDelay: '0.7s' }}>
                 <button
                   onClick={handleSubmit}
                   disabled={isSubmitting}
-                  className="w-full group relative bg-gradient-to-r from-purple-600 to-orange-500 hover:from-purple-700 hover:to-orange-600 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/50 flex items-center justify-center gap-2 overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="contact-liquid-btn w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ pointerEvents: isSubmitting ? 'none' : 'auto' }}
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></span>
-                  <span className="relative">{isSubmitting ? 'Sending...' : 'Submit Form'}</span>
-                  {!isSubmitting && <ArrowRight className="relative group-hover:translate-x-1 transition-transform" size={20} />}
+                  <span className="contact-liquid-fill" />
+                  <span className="contact-liquid-text flex items-center justify-center gap-2">
+                    {isSubmitting ? 'Sending...' : 'Submit Form'}
+                    {!isSubmitting && <ArrowRight size={18} />}
+                  </span>
                 </button>
               </div>
             </div>
@@ -310,14 +380,14 @@ const ContactSection = () => {
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-24 right-4 sm:right-8 z-[60] animate-slideInRight">
-          <div className={`flex items-center gap-3 px-6 py-4 rounded-lg shadow-2xl border backdrop-blur-md min-w-[320px] sm:min-w-[400px] ${
-            toastType === 'success' 
-              ? 'bg-black border-green-500/50' 
-              : 'bg-black border-red-500/50'
-          }`}>
-            <div className={`flex-shrink-0 ${
-              toastType === 'success' ? 'text-green-400' : 'text-red-400'
-            }`}>
+          <div
+            className="flex items-center gap-3 px-6 py-4 rounded-lg shadow-2xl min-w-[320px] sm:min-w-[400px]"
+            style={{
+              background: '#080808',
+              border: `1px solid ${toastType === 'success' ? 'rgba(34,197,94,0.5)' : 'rgba(230,48,48,0.5)'}`,
+            }}
+          >
+            <div style={{ color: toastType === 'success' ? '#22c55e' : '#e63030', flexShrink: 0 }}>
               {toastType === 'success' ? (
                 <CheckCircle size={24} className="animate-scaleIn" />
               ) : (
@@ -328,11 +398,11 @@ const ContactSection = () => {
               <p className="text-white font-semibold text-sm sm:text-base">
                 {toastType === 'success' ? 'Success!' : 'Error'}
               </p>
-              <p className="text-gray-300 text-xs sm:text-sm mt-1">{toastMessage}</p>
+              <p className="text-gray-400 text-xs sm:text-sm mt-1">{toastMessage}</p>
             </div>
             <button
               onClick={() => setShowToast(false)}
-              className="flex-shrink-0 text-gray-400 hover:text-white transition-colors"
+              className="flex-shrink-0 text-gray-600 hover:text-white transition-colors"
             >
               <X size={20} />
             </button>
@@ -341,30 +411,76 @@ const ContactSection = () => {
       )}
 
       <style jsx>{`
-        /* Custom Black Scrollbar */
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 12px;
+        /* ── Liquid Button ── */
+        .contact-liquid-btn {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 1rem 2.5rem;
+          border: 2px solid #e63030;
+          border-radius: 50px;
+          background: transparent;
+          cursor: pointer;
+          font-size: 0.9rem;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          font-family: 'Inter', sans-serif;
+          color: #e63030;
+          overflow: hidden;
+          transition: transform 0.3s ease, box-shadow 0.4s ease;
         }
-        
+        .contact-liquid-btn:hover {
+          transform: scale(1.05);
+          box-shadow:
+            0 0 18px rgba(230,48,48,0.5),
+            0 0 50px rgba(230,48,48,0.22),
+            0 0 90px rgba(230,48,48,0.12);
+        }
+        .contact-liquid-fill {
+          position: absolute;
+          left: -5%;
+          bottom: -130%;
+          width: 110%;
+          height: 130%;
+          border-radius: 50% 50% 0 0 / 40px 40px 0 0;
+          background: #e63030;
+          transition:
+            bottom 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+            border-radius 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+          z-index: 0;
+        }
+        .contact-liquid-btn:hover .contact-liquid-fill {
+          bottom: -5%;
+          border-radius: 0;
+        }
+        .contact-liquid-text {
+          position: relative;
+          z-index: 1;
+          transition: color 0.25s ease 0.08s;
+        }
+        .contact-liquid-btn:hover .contact-liquid-text {
+          color: #ffffff;
+        }
+
+        /* Custom RED Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
         .custom-scrollbar::-webkit-scrollbar-track {
           background: #000000;
-          border-radius: 0 10px 10px 0;
         }
-        
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #1a1a1a;
-          border-radius: 6px;
-          border: 2px solid #000000;
+          background: #e63030;
+          border-radius: 2px;
         }
-        
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #2a2a2a;
+          background: #b91c1c;
         }
-        
-        /* Firefox */
         .custom-scrollbar {
           scrollbar-width: thin;
-          scrollbar-color: #1a1a1a #000000;
+          scrollbar-color: #e63030 #000000;
         }
 
         @keyframes float {
@@ -381,67 +497,33 @@ const ContactSection = () => {
           animation: float linear infinite;
         }
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         @keyframes slideUp {
-          from {
-            transform: translateY(50px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
+          from { transform: translateY(50px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
         }
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         @keyframes slideInRight {
-          from {
-            transform: translateX(400px);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
+          from { transform: translateX(400px); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
         }
         @keyframes scaleIn {
-          from {
-            transform: scale(0);
-          }
-          to {
-            transform: scale(1);
-          }
+          from { transform: scale(0); }
+          to { transform: scale(1); }
         }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-        .animate-slideUp {
-          animation: slideUp 0.4s ease-out;
-        }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out; }
+        .animate-slideUp { animation: slideUp 0.4s ease-out; }
         .animate-fadeInUp {
           animation: fadeInUp 0.6s ease-out forwards;
           opacity: 0;
         }
-        .animate-slideInRight {
-          animation: slideInRight 0.5s ease-out;
-        }
-        .animate-scaleIn {
-          animation: scaleIn 0.3s ease-out;
-        }
+        .animate-slideInRight { animation: slideInRight 0.5s ease-out; }
+        .animate-scaleIn { animation: scaleIn 0.3s ease-out; }
       `}</style>
     </>
   );
